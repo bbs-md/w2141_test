@@ -1,5 +1,6 @@
 package org.example.testng;
 
+import org.example.demoqa.FormaPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class FormaTest {
+public class FormaTest extends Basic {
 
     public static WebDriver driver;
 
@@ -25,8 +26,14 @@ public class FormaTest {
     @Test
     public void FormaTest() {
         driver.get("https://demoqa.com/automation-practice-form");
-        WebElement firstNameEl = driver.findElement(By.xpath("//*[@id='firstName']"));
-        firstNameEl.sendKeys("Anatolie");
+        FormaPage formaPage = new FormaPage(driver);
+        formaPage.setFirstNameEl(FIRST_NAME);
+        formaPage.setLastNameEl(LAST_NAME);
+        formaPage.setUserEmailEl(EMAIL);
+        formaPage.setMailGender();
+        formaPage.setState(STATE);
+//        WebElement firstNameEl = driver.findElement(By.xpath("//*[@id='firstName']"));
+//        firstNameEl.sendKeys(FIRST_NAME);
     }
 
     @AfterClass
